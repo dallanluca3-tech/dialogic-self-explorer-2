@@ -166,10 +166,7 @@ function Step1() {
                     <SelectContent>
                       {DIMENSIONS.map((d) => (
                         <SelectItem key={d.key} value={d.key}>
-                          {d.label}{" "}
-                          <span className="text-muted-foreground">
-                            · {d.radius}px
-                          </span>
+                          {d.label}
                         </SelectItem>
                       ))}
                     </SelectContent>
