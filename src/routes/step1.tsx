@@ -224,7 +224,7 @@ function Step1() {
             <div className="flex justify-center">
               <svg
                 viewBox={`0 0 ${SVG_SIZE} ${SVG_SIZE}`}
-                className="w-full max-w-[560px]"
+                className="w-full max-w-[620px]"
                 role="img"
                 aria-label="Grafico del Sé"
               >
