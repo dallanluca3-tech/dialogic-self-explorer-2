@@ -34,22 +34,26 @@ function computeLayout(positions: IPosition[]) {
   const internal = positions.filter((p) => p.belonging === "internal");
   const external = positions.filter((p) => p.belonging === "external");
 
-  const place = (list: IPosition[], baseRadius: number, isInternal: boolean) => {
+  const place = (list: IPosition[], isInternal: boolean) => {
+    const n = list.length;
     return list.map((p, i) => {
-      const n = list.length;
-      // Angle spread starting from top
       const angle = (i / Math.max(n, 1)) * Math.PI * 2 - Math.PI / 2;
       let r: number;
       if (isInternal) {
-        // Center-out but keep circles inside inner circle
-        r = n === 1 ? 0 : Math.min(baseRadius - p.radius - 8, 60 + (i % 2) * 20);
-        if (r < 0) r = 0;
+        if (n === 1) {
+          r = 0;
+        } else {
+          // distribute across a couple of concentric rings inside inner circle
+          const maxR = Math.max(INNER_RADIUS - p.radius - 10, 0);
+          const ring = i % 2 === 0 ? 0.45 : 0.85;
+          r = maxR * ring;
+        }
       } else {
-        // Between INNER + margin and OUTER - margin
-        const min = INNER_RADIUS + p.radius + 10;
-        const max = OUTER_RADIUS - p.radius + 20;
-        const ringWidth = Math.max(max - min, 20);
-        r = min + ((i % 3) / 2) * ringWidth * 0.6;
+        const min = INNER_RADIUS + p.radius + 12;
+        const max = OUTER_RADIUS - p.radius - 8;
+        const width = Math.max(max - min, 0);
+        const ring = (i % 3) / 2; // 0, 0.5, 1
+        r = min + width * ring;
       }
       return {
         ...p,
@@ -59,10 +63,7 @@ function computeLayout(positions: IPosition[]) {
     });
   };
 
-  return [
-    ...place(internal, INNER_RADIUS, true),
-    ...place(external, OUTER_RADIUS, false),
-  ];
+  return [...place(internal, true), ...place(external, false)];
 }
 
 function Step1() {
