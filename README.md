@@ -8,4 +8,5 @@ Questo progetto presenta una landing page per il programma di ricerca e consente
 - [Area ricercatore](docs/researcher/index.html)
 - [Home della landing page](docs/index.html)
 
-Il sito è live su https://dallanluca3-tech.github.io/dialogic-self-explorer-2/docs/
+Il sito è live su [https://dallanluca3-tech.github.io/dialogic-self-explorer-2/docs/
+](https://akrasiasurvey.github.io/test1/)
