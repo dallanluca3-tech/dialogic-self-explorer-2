@@ -12,6 +12,20 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
+const getBasePath = () => {
+  if (typeof window === "undefined") {
+    return "/";
+  }
+
+  const pathname = window.location.pathname;
+  const repoPrefixMatch = pathname.match(/^\/[^/]+\//);
+  if (repoPrefixMatch) {
+    return repoPrefixMatch[0];
+  }
+
+  return "/";
+};
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -87,9 +101,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       {
         rel: "stylesheet",
-        href: appCss,
+        href: `${getBasePath()}assets/styles.css`,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: `${getBasePath()}favicon.ico`, type: "image/x-icon" },
     ],
   }),
   shellComponent: RootShell,
