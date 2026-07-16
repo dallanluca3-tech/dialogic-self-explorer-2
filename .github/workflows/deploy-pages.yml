@@ -35,10 +35,10 @@ jobs:
         env:
           # Enables SPA-only mode in vite.config.ts (no SSR, no nitro).
           GITHUB_PAGES: "1"
-          # `base_path` from configure-pages: `/` for user/org sites,
-          # `/<repo>` for project sites. Add a trailing slash — Vite needs it.
-          BASE_PATH: ${{ steps.pages.outputs.base_path }}/
-          VITE_BASE_URL: ${{ steps.pages.outputs.base_path }}/
+          # Use the repository slug as the base path for project sites so assets
+          # resolve correctly under /<repo>/ on GitHub Pages.
+          BASE_PATH: ${{ format('/{0}/', github.event.repository.name) }}
+          VITE_BASE_URL: ${{ format('/{0}/', github.event.repository.name) }}
         run: bun run build:pages
 
       - name: Upload Pages artifact
