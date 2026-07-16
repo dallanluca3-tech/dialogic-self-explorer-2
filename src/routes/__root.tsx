@@ -26,6 +26,23 @@ const getBasePath = () => {
   return "/";
 };
 
+const resolveAssetPath = (path: string) => {
+  const basePath = getBasePath();
+  if (!path.startsWith("/")) {
+    return path;
+  }
+
+  if (path === "/") {
+    return basePath;
+  }
+
+  if (basePath === "/") {
+    return path;
+  }
+
+  return `${basePath}${path.replace(/^\//, "")}`;
+};
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -101,9 +118,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       {
         rel: "stylesheet",
-        href: `${getBasePath()}assets/styles.css`,
+        href: resolveAssetPath("/assets/styles.css"),
       },
-      { rel: "icon", href: `${getBasePath()}favicon.ico`, type: "image/x-icon" },
+      { rel: "icon", href: resolveAssetPath("/favicon.ico"), type: "image/x-icon" },
     ],
   }),
   shellComponent: RootShell,
