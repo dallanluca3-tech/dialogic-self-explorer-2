@@ -37,8 +37,8 @@ jobs:
           GITHUB_PAGES: "1"
           # Use the repository slug as the base path for project sites so assets
           # resolve correctly under /<repo>/ on GitHub Pages.
-          BASE_PATH: ${{ format('/{0}/', github.event.repository.name) }}
-          VITE_BASE_URL: ${{ format('/{0}/', github.event.repository.name) }}
+          BASE_PATH: /test1/
+          VITE_BASE_URL: /test1/
         run: bun run build:pages
 
       - name: Upload Pages artifact
