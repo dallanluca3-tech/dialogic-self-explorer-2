@@ -12,37 +12,6 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
-const getBasePath = () => {
-  if (typeof window === "undefined") {
-    return "/";
-  }
-
-  const pathname = window.location.pathname;
-  const repoPrefixMatch = pathname.match(/^\/[^/]+\//);
-  if (repoPrefixMatch) {
-    return repoPrefixMatch[0];
-  }
-
-  return "/";
-};
-
-const resolveAssetPath = (path: string) => {
-  const basePath = getBasePath();
-  if (!path.startsWith("/")) {
-    return path;
-  }
-
-  if (path === "/") {
-    return basePath;
-  }
-
-  if (basePath === "/") {
-    return path;
-  }
-
-  return `${basePath}${path.replace(/^\//, "")}`;
-};
-
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -118,9 +87,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       {
         rel: "stylesheet",
-        href: resolveAssetPath("/assets/styles.css"),
+        href: appCss,
       },
-      { rel: "icon", href: resolveAssetPath("/favicon.ico"), type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
   }),
   shellComponent: RootShell,

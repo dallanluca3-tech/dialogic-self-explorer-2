@@ -10,14 +10,7 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 // In that mode we produce a pure client-side SPA (no server) into
 // `dist/client/`, which the workflow uploads to Pages.
 const isPagesBuild = process.env.GITHUB_PAGES === "1";
-const configuredBasePath = process.env.BASE_PATH?.trim();
-const repoName = process.env.GITHUB_REPOSITORY?.split("/")[1]?.trim();
-const basePath =
-  isPagesBuild && configuredBasePath && configuredBasePath !== "/"
-    ? configuredBasePath
-    : isPagesBuild && repoName
-      ? `/${repoName}/`
-      : "/";
+const basePath = process.env.BASE_PATH ?? "/";
 
 export default defineConfig({
   tanstackStart: {
