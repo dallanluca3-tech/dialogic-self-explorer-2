@@ -51,10 +51,11 @@
       .grid {
         display: grid;
         gap: 1rem;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
         margin-top: 2rem;
       }
       .tile {
+        display: block;
         border: 1px solid rgba(255,255,255,0.12);
         border-radius: 16px;
         padding: 1.2rem;
@@ -77,27 +78,24 @@
       <div class="card">
         <p class="eyebrow">Studio di ricerca — Sé Dialogico</p>
         <h1>Mappatura fenomenologica del Sé e dei processi decisionali</h1>
-        <p>Questa home raccoglie le principali aree del programma e consente di entrare nelle sezioni dedicate al partecipante e al ricercatore.</p>
+        <p>Strumento di ricerca qualitativa. Seleziona la modalità di accesso. L'area del ricercatore è protetta da credenziali dedicate.</p>
 
         <div class="grid">
           <a class="tile" href="./consent/">
-            <h2>Area partecipante</h2>
-            <p>Accedi al percorso di ricerca e al consenso informato.</p>
+            <p style="margin:0 0 0.4rem; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.2em; color:var(--accent);">Area partecipante</p>
+            <h2>Accedi come Partecipante</h2>
+            <p>Avvia il flusso della ricerca. Durata stimata: 15 minuti.</p>
             <span>Entra →</span>
           </a>
           <a class="tile" href="./researcher/">
-            <h2>Area ricercatore</h2>
-            <p>Consulta gli strumenti e i dati di analisi riservati.</p>
+            <p style="margin:0 0 0.4rem; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.2em; color:var(--accent);">Area riservata</p>
+            <h2>Accedi come Ricercatore</h2>
+            <p>Accesso alla dashboard di analisi. Richiede password.</p>
             <span>Entra →</span>
-          </a>
-          <a class="tile" href="#struttura">
-            <h2>Struttura del programma</h2>
-            <p>Panoramica delle fasi e delle aree di lavoro.</p>
-            <span>Scopri di più →</span>
           </a>
         </div>
 
-        <section id="struttura" class="footer">
+        <section class="footer">
           <h2 style="font-size: 1.15rem; margin-bottom: 0.4rem;">Struttura del programma</h2>
           <p>Il progetto prevede un percorso guidato per l’utente e un’area separata per il ricercatore, con accesso ai dati, ai passi di ricerca e alle informazioni di supporto.</p>
         </section>
